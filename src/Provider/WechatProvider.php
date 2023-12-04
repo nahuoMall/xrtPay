@@ -4,41 +4,45 @@ namespace Xmo\Api\Provider;
 
 
 use Xmo\Api\Core\Container;
-use Xmo\Api\Functions\Wechat\Order\Detail;
-use Xmo\Api\Functions\Wechat\Order\Order;
+use Xmo\Api\Functions\Wechat\Order\AppPayShortcut;
+use Xmo\Api\Functions\Wechat\Order\JsPayShortcut;
+use Xmo\Api\Functions\Wechat\Order\MicroPayShortcut;
+use Xmo\Api\Functions\Wechat\Order\NativePayShortcut;
+use Xmo\Api\Functions\Wechat\Order\OrderDetail;
+use Xmo\Api\Functions\Wechat\Order\WapPayShortcut;
 use Xmo\Api\Interfaces\Provider;
 
 /**
- * @method Order micropay
- * @method Order native
- * @method Order app
- * @method Order wap
- * @method Order jspay
+ * @method MicroPayShortcut micropay
+ * @method NativePayShortcut native
+ * @method AppPayShortcut app
+ * @method WapPayShortcut wap
+ * @method JsPayShortcut jspay
  */
 class WechatProvider implements Provider
 {
     /**
      * @inheritDoc
      */
-    public function serviceProvider(Container $container): void
+    public function serviceProvider(Container $container): mixed
     {
         $container['micropay'] = function ($container) {
-            return new Order($container, 'unified.trade.micropay');
+            return new MicroPayShortcut($container, 'unified.trade.micropay');
         };
         $container['native'] = function ($container) {
-            return new Order($container, 'pay.weixin.native');
+            return new NativePayShortcut($container, 'pay.weixin.native');
         };
         $container['app'] = function ($container) {
-            return new Order($container, 'unified.trade.pay');
+            return new AppPayShortcut($container, 'unified.trade.pay');
         };
         $container['wap'] = function ($container) {
-            return new Order($container, 'pay.weixin.wap');
+            return new WapPayShortcut($container, 'pay.weixin.wap');
         };
         $container['jspay'] = function ($container) {
-            return new Order($container, 'pay.weixin.jspay');
+            return new JsPayShortcut($container, 'pay.weixin.jspay');
         };
         $container['query'] = function ($container) {
-            return new Detail($container, 'unified.trade.query');
+            return new OrderDetail($container, 'unified.trade.query');
         };
     }
 }

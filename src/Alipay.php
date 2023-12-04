@@ -2,6 +2,12 @@
 namespace Xmo\Api;
 
 use Xmo\Api\Core\ContainerBase;
+use Xmo\Api\Functions\Alipay\Order\AppPayShortcut;
+use Xmo\Api\Functions\Alipay\Order\JsPayShortcut;
+use Xmo\Api\Functions\Alipay\Order\NativePayShortcut;
+use Xmo\Api\Functions\Alipay\Order\OrderDetail;
+use Xmo\Api\Functions\Alipay\Order\OrderRefund;
+use Xmo\Api\Functions\Alipay\Order\WapPayShortcut;
 use Xmo\Api\Provider\AlipayProvider;
 
 /**
@@ -9,6 +15,12 @@ use Xmo\Api\Provider\AlipayProvider;
  */
 class Alipay extends ContainerBase
 {
+    protected JsPayShortcut $jspay;
+    protected AppPayShortcut $app;
+    protected NativePayShortcut $native;
+    protected WapPayShortcut $wap;
+    protected OrderDetail $detail;
+    protected OrderRefund $refund;
 
     /**
      * 服务提供者

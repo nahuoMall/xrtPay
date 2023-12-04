@@ -7,7 +7,7 @@ use Xmo\Api\Core\BaseClient;
 /**
  * 退款模块
  */
-class Refund extends BaseClient
+class OrderRefund extends BaseClient
 {
     /**
      * 统一退款

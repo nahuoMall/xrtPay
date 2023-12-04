@@ -1,13 +1,13 @@
 <?php
 
-namespace Xmo\Api\Functions\Wechat\Order;
+namespace Xmo\Api\Functions\Alipay\Order;
 
 use Xmo\Api\Core\BaseClient;
 
 /**
  * 订单模块
  */
-class Order extends BaseClient
+class JsPayShortcut extends BaseClient
 {
 
     /**
