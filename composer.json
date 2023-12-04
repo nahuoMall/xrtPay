@@ -1,0 +1,41 @@
+{
+  "name": "nahuomall/xrtpay",
+  "description": "Xrt Pay API SDK for PHP",
+  "type": "library",
+  "keywords": ["xrt", "sdk", "hyperf"],
+  "require": {
+    "php": ">=8.0",
+    "hyperf/framework": "~3.0.0",
+    "hyperf/guzzle": "~3.0.0",
+    "ext-simplexml": "*"
+  },
+  "support": {
+    "email": "yangyang@nahuomall.com",
+    "issues": "https://github.com/nahuoMall/xrtPay",
+    "docs": "https://open.jxhh.com"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "<9.0.0",
+    "mockery/mockery": "^1.3",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "monolog/monolog": "^1.25.1",
+    "symfony/dotenv": "^v4.4.7"
+  },
+  "provides": [
+    "Xmo\\Api\\Provider\\WechatProvider",
+    "Xmo\\Api\\Provider\\AlipayProvider"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "since",
+      "email": "yangyang@nahuomall.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-4": {
+      "Xmo\\Api\\": "src/"
+    }
+  }
+}
