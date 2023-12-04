@@ -1,12 +1,14 @@
 <?php
+
 namespace Xmo\Api\Tools;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
-use Hyperf\Codec\Json;
+use App\Exception\ServiceException;
 use Hyperf\Guzzle\CoroutineHandler;
 use Psr\Http\Message\ResponseInterface;
+use Xmo\Api\Constants\XrtErrorCode;
 
 class Guzzle
 {
@@ -22,7 +24,7 @@ class Guzzle
     {
         !empty($options['headers']) && $options['headers'] = array_merge($options['headers'], $this->headers);
 
-         $options['handler'] = HandlerStack::create(new CoroutineHandler());
+        $options['handler'] = HandlerStack::create(new CoroutineHandler());
 
         $this->client = \Hyperf\Support\make(Client::class, [$options]);
 
@@ -60,7 +62,18 @@ class Guzzle
 
         $statusCode = $response->getStatusCode();
 
-        return Xml::xmlToArray($result);
+        $result = Xml::xmlToArray($result);
+
+        if (empty($result) || $statusCode != 200) {
+            throw new ServiceException(XrtErrorCode::ORDER_SERVICE_ERROR, '请求支付服务错误');
+        }
+
+
+        if ($result['status'] != 0) {
+            throw new ServiceException(XrtErrorCode::PAY_POST_ERROR, !empty($result['message']) && is_string($result['message']) ? $result['message'] : null);
+        }
+
+        return $result;
     }
 
 }

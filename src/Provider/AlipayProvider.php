@@ -21,7 +21,7 @@ class AlipayProvider implements Provider
      * 服务提供者
      * @param Container $container
      */
-    public function serviceProvider(Container $container): mixed
+    public function serviceProvider(Container $container): void
     {
         $container['native'] = function ($container) {
             return new NativePayShortcut($container, 'pay.alipay.native');

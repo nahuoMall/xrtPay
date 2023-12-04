@@ -12,7 +12,7 @@ interface Provider
 {
     /**
      * @param Container $container
-     * @return mixed
+     * @return void
      */
-    public function serviceProvider(Container $container): mixed;
+    public function serviceProvider(Container $container): void;
 }

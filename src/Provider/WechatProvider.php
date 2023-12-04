@@ -24,7 +24,7 @@ class WechatProvider implements Provider
     /**
      * @inheritDoc
      */
-    public function serviceProvider(Container $container): mixed
+    public function serviceProvider(Container $container): void
     {
         $container['micropay'] = function ($container) {
             return new MicroPayShortcut($container, 'unified.trade.micropay');
