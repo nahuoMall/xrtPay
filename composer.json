@@ -5,9 +5,9 @@
   "keywords": ["xrt", "sdk", "hyperf"],
   "require": {
     "php": ">=8.0",
-    "hyperf/framework": "3.*",
-    "hyperf/guzzle": "3.*",
-    "hyperf/constants": "3.*",
+    "hyperf/framework": "~3.1.0",
+    "hyperf/guzzle": "~3.1.0",
+    "hyperf/constants": "~3.1.0",
     "ext-simplexml": "*"
   },
   "support": {
