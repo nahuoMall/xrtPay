@@ -8,6 +8,13 @@ use Xmo\Api\Functions\Wechat\Order\Detail;
 use Xmo\Api\Functions\Wechat\Order\Order;
 use Xmo\Api\Interfaces\Provider;
 
+/**
+ * @method Order micropay
+ * @method Order native
+ * @method Order app
+ * @method Order wap
+ * @method Order jspay
+ */
 class WechatProvider implements Provider
 {
     /**

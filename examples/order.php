@@ -28,11 +28,10 @@ $xrtClient = \Hyperf\Support\make(Wechat::class);
 $xrtClient->setMchId($mchId);
 $xrtClient->setAppSecret($appSecret);
 
-var_dump($xrtClient->micropay->createOrder($param));
-exit();
+$response = $xrtClient->refund->refund($param);
 
-$response = $xrtClient->wechat->createOrder($param);
 
+var_dump($response);exit();
 //订单详情
 //$param = [];
 $sn = "20191115204845294762_6_1_1";//三级订单号

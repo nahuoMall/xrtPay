@@ -32,6 +32,7 @@ class ContainerBase extends Container
             $obj = new $provider;
             $this->serviceRegister($obj);
         };
+
         array_walk($this->provider, $providerCallback);//注册
     }
 

@@ -10,11 +10,6 @@ namespace Xmo\Api\Core;
 class Container implements \ArrayAccess
 {
     /**
-     * 中间件
-     * @var array
-     */
-    protected array $middlewares = array();
-    /**
      * @var array
      */
     private array $instances = array();
@@ -65,39 +60,6 @@ class Container implements \ArrayAccess
     {
 
     }
-
-    /**
-     * @return array
-     */
-    public function getMiddlewares(): array
-    {
-        return $this->middlewares;
-    }
-
-    /**
-     * @param array $middlewares
-     */
-    public function setMiddlewares(array $middlewares): void
-    {
-        $this->middlewares = $middlewares;
-    }
-
-    /**
-     * 添加中间件
-     * @param array $class_and_function
-     * @param string $name
-     * @return array
-     */
-    public function pushMiddlewares(array $class_and_function, string $name = ''): array
-    {
-        if (empty($this->middlewares)) {
-            $this->middlewares[$name] = $class_and_function;
-        } else {
-            array_push($this->middlewares, [$name => $class_and_function]);
-        }
-        return $this->middlewares;
-    }
-
 
     public function offsetExists($offset): bool
     {
