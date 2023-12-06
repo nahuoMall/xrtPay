@@ -18,10 +18,9 @@ use Hyperf\Constants\Annotation\Constants;
 #[Constants]
 class XrtErrorCode extends AbstractConstants
 {
-    /**
-     * @Message("Server Error！")
-     */
+
     public const SERVER_ERROR = 500;
+
 
     /**
      * @Message("Order Type Not Found")
