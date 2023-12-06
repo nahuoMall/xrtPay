@@ -1,4 +1,4 @@
-# 聚合美的支付平台SDK
+# 适配hyperf的聚合美的支付平台SDK
 ## Installing
 
 ```shell
@@ -8,10 +8,21 @@ $ composer require nahuomall/xrtpay -vvv
 ## Usage
 
 ```php
-        $obj = new \Xmo\Api\Wechat(['page'=>1]);
-        $obj->setAppkey('你的appkey');
+        // $obj = new \Xmo\Api\Wechat(); 
+        // or 
+        $obj = \Hyperf\Support\make(\Xmo\Api\Wechat::class)
+        
+        $obj->setMchId('你的商户ID');
         $obj->setAppsecret('你的秘钥');
+        // 小程序
+        $res =$obj->mini->createOrder([]);
+        // app
+        $res =$obj->app->createOrder([]);
+        // 扫码
         $res =$obj->micropay->createOrder([]);
+        // 网页
+        $res =$obj->wap->createOrder([]);
+        
         var_dump($res);
 ```
 
