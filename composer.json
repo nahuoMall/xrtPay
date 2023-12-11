@@ -10,7 +10,9 @@
     "hyperf/constants": "~3.1.0",
     "hyperf/server": "~3.1.0",
     "hyperf/exception-handler": "~3.1.0",
-    "ext-simplexml": "*"
+    "ext-simplexml": "*",
+    "spatie/array-to-xml": "^3.2",
+    "mtownsend/xml-to-array": "^2.0"
   },
   "support": {
     "email": "yangyang@nahuomall.com",

@@ -15,7 +15,7 @@ class BaseClient
     use Sign;
     protected Container $app;
     public string $host = 'http://pay.xrtpay.com';
-    public string $url = 'xrtpay/gateway';
+    public string $url = '/xrtpay/gateway';
     public string $service = '';
 
     /**
@@ -41,10 +41,11 @@ class BaseClient
         /** @var Guzzle $client */
         $client = \Hyperf\Support\make(Guzzle::class);
 
+        unset($data['pay_client_type']);
         // 商户ID
-        $data['mch_id'] = $this->app->mchId;
+        $data['mch_id'] = (string)$this->app->mchId;
         // 随机字符
-        $data['nonce_str'] = (int)microtime(true);
+        $data['nonce_str'] = (string)(int)microtime(true);
         ## 合并接口名
         $data['service'] = $this->service;
         ## 开始加密
@@ -54,7 +55,7 @@ class BaseClient
             [
                 'base_uri' => $this->host,
                 'timeout' => $timeout,
-                'headers' => ['Content-Type' => 'application/xml']
+                'verify' => false,
             ]
         );
 

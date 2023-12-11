@@ -9,6 +9,7 @@ use Xmo\Api\Functions\Wechat\Order\JsPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\MicroPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\NativePayShortcut;
 use Xmo\Api\Functions\Wechat\Order\OrderDetail;
+use Xmo\Api\Functions\Wechat\Order\OrderRefund;
 use Xmo\Api\Functions\Wechat\Order\WapPayShortcut;
 use Xmo\Api\Interfaces\Provider;
 
@@ -43,6 +44,9 @@ class WechatProvider implements Provider
         };
         $container['query'] = function ($container) {
             return new OrderDetail($container, 'unified.trade.query');
+        };
+        $container['refund'] = function ($container) {
+            return new OrderRefund($container, 'unified.trade.refund');
         };
     }
 }

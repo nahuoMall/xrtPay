@@ -19,7 +19,7 @@ class Wechat extends ContainerBase
     protected AppPayShortcut $app;
     protected NativePayShortcut $native;
     protected WapPayShortcut $wap;
-    protected OrderDetail $detail;
+    protected OrderDetail $query;
     protected OrderRefund $refund;
 
     /**

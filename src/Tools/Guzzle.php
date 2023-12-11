@@ -14,7 +14,11 @@ class Guzzle
 {
     private Client $client;
 
-    protected array $headers = [];
+    protected static string $url = 'https://pay.xrtpay.com/xrtpay/gateway';
+
+    protected array $headers = [
+        'Content-Type' => 'text/xml; charset=UTF8',
+    ];
 
     /**
      * @param array $options
@@ -22,11 +26,11 @@ class Guzzle
      */
     public function setHttpHandle(array $options = []): static
     {
-        !empty($options['headers']) && $options['headers'] = array_merge($options['headers'], $this->headers);
+         $options['handler'] = HandlerStack::create(new CoroutineHandler());
 
-        $options['handler'] = HandlerStack::create(new CoroutineHandler());
+        $options['headers'] = $this->headers;
 
-        $this->client = \Hyperf\Support\make(Client::class, [$options]);
+        $this->client = new Client($options);
 
         return $this;
     }
@@ -42,10 +46,14 @@ class Guzzle
     }
 
     /**
+     * @param string $url
+     * @param array $params
+     * @return array
      * @throws GuzzleException
      */
     public function sendPost(string $url, array $params): array
     {
+        logger('xrtpay')->info('XRTPAY POST', ['url' => $url, 'params' => $params]);
 
         $result = $this->client->post($url, ['body' => Xml::arrayToXml($params)]);
 
@@ -64,10 +72,11 @@ class Guzzle
 
         $result = Xml::xmlToArray($result);
 
+        logger('xrtpay')->info('XRTPAY POST RESULT', $result);
+
         if (empty($result) || $statusCode != 200) {
             throw new PayException(XrtErrorCode::ORDER_SERVICE_ERROR, '请求支付服务错误');
         }
-
 
         if ($result['status'] != 0) {
             throw new PayException(XrtErrorCode::PAY_POST_ERROR, !empty($result['message']) && is_string($result['message']) ? $result['message'] : null);

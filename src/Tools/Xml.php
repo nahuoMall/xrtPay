@@ -2,24 +2,25 @@
 
 namespace Xmo\Api\Tools;
 
+use Mtownsend\XmlToArray\XmlToArray;
+use Spatie\ArrayToXml\ArrayToXml;
+
 class Xml
 {
     /**
-     * @param $arr
+     * @param $array
      * @return string
      */
-    public static function arrayToXml($arr): string
+    public static function arrayToXml($array): string
     {
-        $xml = "<xml>";
-        foreach ($arr as $key => $val) {
-            if (is_array($val)) {
-                $xml .= "<" . $key . ">" . self::arrayToXml($val) . "</" . $key . ">";
-            } else {
-                $xml .= "<" . $key . ">" . $val . "</" . $key . ">";
-            }
+        foreach ($array as $key => $value) {
+            $value = (string) $value;
+            $array[$key] = ['_cdata' => $value];
         }
-        $xml .= "</xml>";
-        return $xml;
+        $arrayToXml = new ArrayToXml($array, 'xml', true, 'UTF-8');
+        $arrayToXml->dropXmlDeclaration()->prettify();
+
+        return $arrayToXml->toXml();
     }
 
     /**
@@ -28,8 +29,6 @@ class Xml
      */
     public static function xmlToArray($xml): array
     {
-        $xmlArray = simplexml_load_string($xml);
-
-        return json_decode(json_encode($xmlArray), true);
+        return XmlToArray::convert($xml);
     }
 }
