@@ -3,23 +3,18 @@
 namespace Xmo\Api;
 
 use Xmo\Api\Core\ContainerBase;
+use Xmo\Api\Functions\Cloud\CloudPayShortcut;
 use Xmo\Api\Functions\Public\OrderClose;
 use Xmo\Api\Functions\Public\OrderDetail;
 use Xmo\Api\Functions\Public\OrderRefund;
-use Xmo\Api\Functions\Wechat\AppPayShortcut;
-use Xmo\Api\Functions\Wechat\JsPayShortcut;
-use Xmo\Api\Functions\Wechat\NativePayShortcut;
-use Xmo\Api\Functions\Wechat\WapPayShortcut;
-use Xmo\Api\Provider\WechatProvider;
+use Xmo\Api\Provider\CloudProvider;
 
-class Wechat extends ContainerBase
+class Cloud extends ContainerBase
 {
-    protected JsPayShortcut $jspay;
-    protected AppPayShortcut $app;
-    protected NativePayShortcut $native;
-    protected WapPayShortcut $wap;
+    protected CloudPayShortcut $cloud;
     protected OrderDetail $query;
     protected OrderRefund $refund;
+
     protected OrderClose $close;
 
     /**
@@ -36,7 +31,7 @@ class Wechat extends ContainerBase
      * @var array
      */
     protected array $provider = [
-        WechatProvider::class,
+        CloudProvider::class,
         //...其他服务提供者
     ];
 }

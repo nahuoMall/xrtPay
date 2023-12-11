@@ -2,12 +2,12 @@
 namespace Xmo\Api;
 
 use Xmo\Api\Core\ContainerBase;
-use Xmo\Api\Functions\Alipay\Order\AppPayShortcut;
-use Xmo\Api\Functions\Alipay\Order\JsPayShortcut;
-use Xmo\Api\Functions\Alipay\Order\NativePayShortcut;
-use Xmo\Api\Functions\Alipay\Order\OrderDetail;
-use Xmo\Api\Functions\Alipay\Order\WapPayShortcut;
+use Xmo\Api\Functions\Alipay\AppPayShortcut;
+use Xmo\Api\Functions\Alipay\JsPayShortcut;
+use Xmo\Api\Functions\Alipay\NativePayShortcut;
+use Xmo\Api\Functions\Alipay\WapPayShortcut;
 use Xmo\Api\Functions\Public\OrderClose;
+use Xmo\Api\Functions\Public\OrderDetail;
 use Xmo\Api\Functions\Public\OrderRefund;
 use Xmo\Api\Provider\AlipayProvider;
 
