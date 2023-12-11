@@ -8,6 +8,8 @@ use Xmo\Api\Functions\Alipay\Order\JsPayShortcut;
 use Xmo\Api\Functions\Alipay\Order\NativePayShortcut;
 use Xmo\Api\Functions\Alipay\Order\OrderDetail;
 use Xmo\Api\Functions\Alipay\Order\WapPayShortcut;
+use Xmo\Api\Functions\Public\OrderClose;
+use Xmo\Api\Functions\Public\OrderRefund;
 use Xmo\Api\Interfaces\Provider;
 
 /**
@@ -37,6 +39,12 @@ class AlipayProvider implements Provider
         };
         $container['query'] = function ($container) {
             return new OrderDetail($container, 'unified.trade.query');
+        };
+        $container['close'] = function ($container) {
+            return new OrderClose($container, 'unified.trade.close');
+        };
+        $container['refund'] = function ($container) {
+            return new OrderRefund($container, 'unified.trade.refund');
         };
     }
 }

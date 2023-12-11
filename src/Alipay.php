@@ -6,8 +6,9 @@ use Xmo\Api\Functions\Alipay\Order\AppPayShortcut;
 use Xmo\Api\Functions\Alipay\Order\JsPayShortcut;
 use Xmo\Api\Functions\Alipay\Order\NativePayShortcut;
 use Xmo\Api\Functions\Alipay\Order\OrderDetail;
-use Xmo\Api\Functions\Alipay\Order\OrderRefund;
 use Xmo\Api\Functions\Alipay\Order\WapPayShortcut;
+use Xmo\Api\Functions\Public\OrderClose;
+use Xmo\Api\Functions\Public\OrderRefund;
 use Xmo\Api\Provider\AlipayProvider;
 
 /**
@@ -21,6 +22,8 @@ class Alipay extends ContainerBase
     protected WapPayShortcut $wap;
     protected OrderDetail $detail;
     protected OrderRefund $refund;
+
+    protected OrderClose $close;
 
     /**
      * 服务提供者

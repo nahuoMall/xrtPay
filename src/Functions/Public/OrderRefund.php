@@ -1,6 +1,6 @@
 <?php
 
-namespace Xmo\Api\Functions\Alipay\Order;
+namespace Xmo\Api\Functions\Public;
 
 use Xmo\Api\Core\BaseClient;
 
@@ -16,6 +16,7 @@ class OrderRefund extends BaseClient
      */
     public function refund(array $params): array
     {
+        $params['op_user_id'] = $this->app->mchId;
         return $this->curlRequest($params, 'post');
     }
 

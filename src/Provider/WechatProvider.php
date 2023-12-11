@@ -4,22 +4,16 @@ namespace Xmo\Api\Provider;
 
 
 use Xmo\Api\Core\Container;
+use Xmo\Api\Functions\Public\OrderClose;
+use Xmo\Api\Functions\Public\OrderRefund;
 use Xmo\Api\Functions\Wechat\Order\AppPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\JsPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\MicroPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\NativePayShortcut;
 use Xmo\Api\Functions\Wechat\Order\OrderDetail;
-use Xmo\Api\Functions\Wechat\Order\OrderRefund;
 use Xmo\Api\Functions\Wechat\Order\WapPayShortcut;
 use Xmo\Api\Interfaces\Provider;
 
-/**
- * @method MicroPayShortcut micropay
- * @method NativePayShortcut native
- * @method AppPayShortcut app
- * @method WapPayShortcut wap
- * @method JsPayShortcut jspay
- */
 class WechatProvider implements Provider
 {
     /**
@@ -47,6 +41,9 @@ class WechatProvider implements Provider
         };
         $container['refund'] = function ($container) {
             return new OrderRefund($container, 'unified.trade.refund');
+        };
+        $container['close'] = function ($container) {
+            return new OrderClose($container, 'unified.trade.close');
         };
     }
 }

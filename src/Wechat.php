@@ -3,10 +3,11 @@
 namespace Xmo\Api;
 
 use Xmo\Api\Core\ContainerBase;
+use Xmo\Api\Functions\Public\OrderClose;
+use Xmo\Api\Functions\Public\OrderRefund;
 use Xmo\Api\Functions\Wechat\Order\OrderDetail;
 use Xmo\Api\Functions\Wechat\Order\MicroPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\JsPayShortcut;
-use Xmo\Api\Functions\Wechat\Order\OrderRefund;
 use Xmo\Api\Functions\Wechat\Order\WapPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\AppPayShortcut;
 use Xmo\Api\Functions\Wechat\Order\NativePayShortcut;
@@ -21,6 +22,7 @@ class Wechat extends ContainerBase
     protected WapPayShortcut $wap;
     protected OrderDetail $query;
     protected OrderRefund $refund;
+    protected OrderClose $close;
 
     /**
      * XrtClient constructor.
